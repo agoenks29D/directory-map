@@ -1,0 +1,16 @@
+{
+	"name": "directory-map",
+	"version": "1.0.0",
+	"description": "Directory map to load module",
+	"main": "index.js",
+	"scripts": {},
+	"keywords": ["directory-map", "module-loader"],
+	"author": "Agung Dirgantara <agungmasda29@gmail.com>",
+	"license": "MIT",
+	"files": [
+		"index.js",
+		"LICENSE",
+		"README.md",
+		"index.js"
+  ]
+}
