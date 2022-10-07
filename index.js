@@ -68,14 +68,12 @@ module.exports.dirContents = (location, options = {}) => {
 			return load_item;
 		} else {
 			load_item = {
-				[item]: require(path.resolve(location, item)),
+				[item]: require(path.join(location, ...depth, item)),
 				_depth: depth
 			}
 
 			return load_item
 		}
-
-		return false;
 	}).filter(item => { return item });
 }
 

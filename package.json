@@ -1,6 +1,6 @@
 {
 	"name": "directory-map",
-	"version": "1.0.0",
+	"version": "1.0.3",
 	"description": "Directory map to load module",
 	"main": "index.js",
 	"scripts": {},
