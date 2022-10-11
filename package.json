@@ -1,10 +1,10 @@
 {
 	"name": "directory-map",
-	"version": "1.0.3",
-	"description": "Directory map to load module",
+	"version": "1.0.4",
+	"description": "Directory map to load nested files",
 	"main": "index.js",
 	"scripts": {},
-	"keywords": ["directory-map", "module-loader"],
+	"keywords": ["directory-map", "loader", "module-loader", "cjs-loader"],
 	"author": "Agung Dirgantara <agungmasda29@gmail.com>",
 	"license": "MIT",
 	"files": [

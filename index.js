@@ -62,14 +62,16 @@ module.exports.dirContents = (location, options = {}) => {
 		if (fs.statSync(path.join(location, item)).isDirectory()) {
 			load_item = {
 				[item]: this.dirContents(path.join(location, item)),
-				_depth: depth
+				_depth: depth,
+				_isdir: true
 			}
 
 			return load_item;
 		} else {
 			load_item = {
 				[item]: require(path.join(location, ...depth, item)),
-				_depth: depth
+				_depth: depth,
+				_isdir: false
 			}
 
 			return load_item
@@ -88,9 +90,10 @@ module.exports.mapContent = (items) => {
 	for (var i = 0; i < items.length; i++) {
 		var keys = Object.keys(items[i]);
 		keys.splice(keys.indexOf('_depth'), 1); // removed _depth key
+		keys.splice(keys.indexOf('_isdir'), 1); // removed _isdir key
 
-		var item = path.join(config.base,...items[i]._depth, keys.slice().shift()); // item path
-		var name = (Array.isArray(items[i][keys]) ? path.basename(item) : path.basename(item).split('.').slice(0, -1).join('-'));
+		var item = path.join(config.base, ...items[i]._depth, keys.slice().shift()); // item path
+		var name = (Array.isArray(items[i][keys] && items[i]._isdir) ? path.basename(item) : path.basename(item).split('.').slice(0, -1).join('-'));
 
 		if (name.length == 0) {
 			name = Object.keys(items[i]);
@@ -98,7 +101,7 @@ module.exports.mapContent = (items) => {
 			name = name.shift();
 		}
 
-		if (Array.isArray(items[i][keys])) {
+		if (Array.isArray(items[i][keys] && items[i]._isdir)) {
 			files[name] = this.mapContent(items[i][keys]);
 		} else {
 			files[name] = items[i][keys];
